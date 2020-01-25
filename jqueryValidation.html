@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>HTML Forms</h2>
+
+<form id="frm" action="next.html">
+  First name:<br>
+  <input id="ip1" type="text" name="firstname" placeholder="Name">
+  <br>
+  Email:<br>
+  <input id="ip2" type="email" name="mail" placeholder="Email">
+  <br><br>
+  <input id="subBtn" type="submit" value="Submit">
+  <p id="error" style="color:red"></p>
+</form>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+</script>
+
+<script>
+	$("#subBtn").click(function(e){
+		e.preventDefault();
+		var flag = 1;
+		var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		$("#error").html("");
+
+
+		if(	$("#ip1").val() == "" ){
+			flag = 0;
+			$("#error").append("Enter name<br>");
+		}
+		if( $("#ip2").val() == "" ) 
+		{			
+			flag = 0;
+			$("#error").append("Enter email");
+		}
+		else if( ! emailRegex.test( $("#ip2").val() ) )
+		{
+			flag = 0;
+			$("#error").append("Enter valid email");
+		}
+		
+		if( flag == 1 )
+		{
+			$("#frm").submit();
+		}
+	});
+</script>
+
+</body>
+</html>
+
